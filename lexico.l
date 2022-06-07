@@ -74,27 +74,23 @@ ERROR .
 
 {ESP} {coluna++;}
 {SEPARADOR} {
-    printf("\nSEPARADOR\n");
     coluna++;
     return *yytext;
 }
 
 {COMENTARIO} {
-    printf("\nCOMENTARIO\n");
     coluna+=strlen(yytext); 
 }
 
 {TIPO}/{SEPARADOR} {
-    if(strcmp(yytext, "int") == 0){printf("\n@TIPO: int\n");return TIPO_INT;}
-    if(strcmp(yytext, "float") == 0){printf("\n@TIPO: float\n");return TIPO_FLOAT;}
-    if(strcmp(yytext, "string") == 0){printf("\n@TIPO: string\n");return TIPO_STRING;}
+    if(strcmp(yytext, "int") == 0){return TIPO_INT;}
+    if(strcmp(yytext, "float") == 0){return TIPO_FLOAT;}
+    if(strcmp(yytext, "string") == 0){return TIPO_STRING;}
     return TIPO_FLOAT;
 }
 
 {RESERVADA}/{SEPARADOR} {
-    //printf("\RESERVADA kct\n");   
-    printf("::%s::%d::", yytext,strcmp(yytext, "continue"));
-    if(strcmp(yytext, "if") == 0){printf("\niffff"); return IF;}
+    if(strcmp(yytext, "if") == 0){return IF;}
     if(strcmp(yytext, "else") == 0){return ELSE;}
     if(strcmp(yytext, "for") == 0){return FOR;}
     if(strcmp(yytext, "while") == 0){return WHILE;}
@@ -103,34 +99,29 @@ ERROR .
 }
 
 {IDENTIFICADOR}/{SEPARADOR_NUM} {   
-    //printf("\IDENTIFICADOR :%s:\n", yytext);
     yylval.label = yytext;
     coluna+=strlen(yytext);
     return ID; }
 
 
 {INTEIRO}/{SEPARADOR_NUM} {
-    //printf("\INTEIRO\n");
     yylval.traducao = yytext;
     coluna+=strlen(yytext);
     return INT;
 }
 
 {FLOAT}/{SEPARADOR_NUM} {
-    printf("\nFLOAT\n");
     yylval.traducao = yytext;
     coluna+=strlen(yytext);
     return FLOAT;
 }
 
 {LITERAL}/{SEPARADOR} {  
-    printf("\nLITERAL\n");  
     yylval.traducao = yytext;
     coluna+=strlen(yytext);
     return LIT;
 }   
 {OP_ARIT}/{SEPARADOR_OP} {  
-    printf("\nOP_ARIT\n");
     yylval.traducao = yytext;
     coluna+=strlen(yytext);
     if(strcmp(yytext, "++") == 0){return OP_INC;}
@@ -138,7 +129,6 @@ ERROR .
     return *yytext;
 }
 {OP_LOGI}/{SEPARADOR_OP} {
-    printf("\nOP_ARIT\n");
     yylval.traducao = yytext;
     coluna+=strlen(yytext);
     return OP_LOGI;
