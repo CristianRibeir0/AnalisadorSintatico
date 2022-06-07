@@ -27,11 +27,9 @@ void yyerror(string);
 
 %% 
     CODIGO: BLOCO
+    {cout << "Não possui erro sintatico" << endl;}
     ;
     BLOCO: CODS 
-    {
-        cout << "Rodou" << endl;
-    }
     ;
 
     CODS: COD_ CODS
@@ -39,17 +37,14 @@ void yyerror(string);
         ;
 
     COD_:
-        {
-        cout << "Rodando Linhas" << endl;
-        }
         DEC ';'
-        {cout << "\n@@DECLARACAO\n" << endl;}
+        {cout << "\nDECLARACAO" << endl;}
         |
         AT ';'
-        {cout << "\n@@ATRIBUICAO\n" << endl;}
+        {cout << "\nATRIBUICAO" << endl;}
         |
         COND 
-        {cout << "\n@@CONDICAO\n" << endl;}
+        {cout << "\nCONDICAO" << endl;}
         |
         ITER
         ;
@@ -91,13 +86,10 @@ void yyerror(string);
         ;
     DEC:
         TIPO_INT DEC_
-            {cout << "\nTipo int\n"<< endl;} 
         |
         TIPO_FLOAT DEC_
-            {cout << "\nTipo float\n"<< endl;} 
         |
         TIPO_STRING ID '=' LIT
-            {cout << "\nTipo string\n"<< endl;}
         |
         TIPO_STRING ID 
         ;
@@ -107,14 +99,12 @@ void yyerror(string);
         ;
 
     COND: COND_ COND
-    {cout << "Merrrrrrda"<< endl;} 
         |
     ;
 
     COND_: IF '(' F OP_LOGI F ')' '{' BLOCO_COND
             |
             IF '(' F OP_LOGI F ')' '{' BLOCO_COND ELSE '{' BLOCO_COND
-    {cout << "heydasdsad" <<endl;}
     ;
 
     BLOCO_COND: BLOCO_COND_ '}'
@@ -140,7 +130,6 @@ void yyerror(string);
     LFOR: FOR '(' AT ';' F OP_LOGI F  ';' AT ')' '{' BLOCO_ITER
         |
         FOR '(' DEC ';' F OP_LOGI F ';' AT ')' '{' BLOCO_ITER
-    {cout << "heydasdsad" <<endl;}
     ;
 
     BLOCO_ITER: BLOCO_ITER_ '}'
