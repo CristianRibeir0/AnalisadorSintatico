@@ -1,0 +1,47 @@
+int a = 10;
+a = 10;
+b = 20;
+d = 30;
+int a = 10;
+int b = 12;
+texto = "dandla";
+sas = 12312.2;
+a = 5;
+x = 10;
+n = "daspdj";
+int b = 10;
+n = 2;
+palavra = "teste"; 
+x = 10;
+string a = "ccczx";
+int t = 200;
+int s;
+while(t < 10){
+if(10 > 2 ){
+    string b = "nana";
+    if(2 > 4){
+        int c = 4;
+        continue;
+        d = 10;
+        continue;
+    }
+    if( 3 > 2){
+        continue;
+    }
+    else{
+        if(a > 10){
+            int d = 5;
+        }
+        for(a = 2; a > 10; a++){
+            int b = 2;
+            if(j == 10){
+                continue;
+            }
+            break;
+        }
+        while( a < 5){
+            int z = 10;
+        }
+    }
+}
+}
